@@ -2,7 +2,7 @@ from typing import Optional, Any
 from collections.abc import Iterable
 
 from fastapi.encoders import jsonable_encoder
-from sqlalchemy import select, func, extract, text, case
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import User
