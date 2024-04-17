@@ -6,6 +6,7 @@ from app.models import CharityProject
 
 
 class CRUDCharityProject(CRUDBase):
+
     async def get_projects_by_completion_rate(
         self, session: AsyncSession
     ) -> list[dict]:
@@ -15,7 +16,7 @@ class CRUDCharityProject(CRUDBase):
                 self.model.create_date,
                 self.model.close_date,
                 self.model.description,
-            ).where(self.model.close_date != None)
+            ).where(self.model.close_date is not None)
         )
 
         projects = []
