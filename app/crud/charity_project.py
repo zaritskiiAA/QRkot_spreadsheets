@@ -16,9 +16,8 @@ class CRUDCharityProject(CRUDBase):
                 self.model.create_date,
                 self.model.close_date,
                 self.model.description,
-            ).where(self.model.close_date is not None)
+            ).where(self.model.close_date.isnot(None))
         )
-
         projects = []
 
         for obj in objects.fetchall():
