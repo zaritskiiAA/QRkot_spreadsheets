@@ -6,7 +6,6 @@ from app.models import CharityProject
 
 
 class CRUDCharityProject(CRUDBase):
-
     async def get_projects_by_completion_rate(
         self, session: AsyncSession
     ) -> list[dict]:

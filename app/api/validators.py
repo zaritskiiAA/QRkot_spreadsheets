@@ -54,3 +54,21 @@ async def check_close_date_status(project) -> None:
             status_code=400,
             detail='Завершенный проект не подлежит корректировкам!',
         )
+
+
+async def check_google_sheet_capacity(
+    spreadsheet: dict, need_rows: int, need_cols: int
+) -> None:
+    sheet_name = spreadsheet['sheets'][0]['properties']['title']
+    max_rows, max_cols = (
+        spreadsheet['sheets'][0]['properties']['gridProperties']['rowCount'],
+        spreadsheet['sheets'][0]['properties']['gridProperties'][
+            'columnCount'
+        ],
+    )
+
+    if max_rows < need_rows or max_cols < need_cols:
+        raise HTTPException(
+            status_code=400,
+            detail=f'Запрашиваемый google лист {sheet_name} не может вместить все требуемые данные',
+        )
